@@ -85,17 +85,20 @@ void addBotCommands(TgBot::Bot &bot, ScheduleAPI &API){
             monthToCheck = std::stoul(matches[2]);
             dayToCheck = std::stoul(matches[1]);
         }
-
         try{
-            ScheduleDay test = API.getDay(
-                    "se-124b",
-                    yearToCheck,
-                    monthToCheck,
-                    dayToCheck
-                    );
-            bot.getApi().sendMessage(message->chat->id, test.getTelegramMessage(), true, message->messageId, nullptr, "HTML");
-        } catch(const std::runtime_error &e){
-            bot.getApi().sendMessage(message->chat->id, "Ви зробили крінж!", true, message->messageId);
+            try{
+                ScheduleDay result = API.getDay(
+                        "se-224b",
+                        yearToCheck,
+                        monthToCheck,
+                        dayToCheck
+                        );
+                bot.getApi().sendMessage(message->chat->id, result.getTelegramMessage(), true, message->messageId, nullptr, "HTML");
+            } catch(const std::runtime_error &e){
+                bot.getApi().sendMessage(message->chat->id, "Ви зробили крінж!", true, message->messageId);
+            }
+        } catch (TgBot::TgException &error) {
+            //Ignore it. It comes from trying to reply to a deleted message
         }
     });
 }

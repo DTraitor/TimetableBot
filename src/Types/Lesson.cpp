@@ -2,18 +2,6 @@
 #include <algorithm>
 #include "Lesson.h"
 
-Lesson::Lesson(const rapidjson::Value &json) {
-    this->localID = json["localID"].GetString();
-    if(!json["comment"].IsNull())
-        this->comment = json["comment"].GetString();
-    this->name = json["name"].GetString();
-    this->lessonType = json["type"].GetString();
-    this->teacher = json["teacher"].GetString();
-    this->location = json["location"].GetString();
-    this->beginTime = static_cast<uint16_t>(json["beginTime"].GetInt());
-    this->duration = static_cast<uint16_t>(json["duration"].GetInt());
-}
-
 std::string Lesson::getTelegramMessage() const {
     std::string result;
 
@@ -42,7 +30,7 @@ std::string Lesson::getTelegramMessage() const {
     result += " | ";
     result += lessonType;
     result += " | ";
-    result += teacher;
+    result += teacher.getTelegramMessage();
     result += " | ";
 
     if(location == "--hidden--"){

@@ -24,6 +24,8 @@ add_executable(TimetableBot
         src/API/ScheduleAPI.h
         src/Types/ScheduleDay.cpp
         src/Types/ScheduleDay.h
+        src/Types/Teacher.cpp
+        src/Types/Teacher.h
 )
 
 target_link_libraries(TimetableBot D:/dev/vcpkg/installed/x64-windows/lib/TgBot.lib cpr::cpr rapidjson ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${CURL_LIBRARIES})

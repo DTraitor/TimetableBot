@@ -22,7 +22,7 @@ ScheduleDay ScheduleAPI::getDay(const std::string &group_code,
                                 const bool &excludeOnetimeChanges,
                                 const bool &excludePermanentChanges,
                                 const bool &showPlace) const {
-    std::string endpoint = "/schedule?";
+    std::string endpoint = "/scheduleBySubgroups?";
     endpoint += "group_code=" + group_code;
     endpoint += "&year=" + std::to_string(year);
     endpoint += "&month=" + std::to_string(month);
